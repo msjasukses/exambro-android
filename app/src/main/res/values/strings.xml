@@ -1,0 +1,87 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string name="app_name">CBT Cyber Edu</string>
+    <string name="app_label">CyberEdu</string>
+    <string name="setup_subtitle">Masukkan link ujian, lalu tekan Masuk Ujian. Proteksi kiosk mode dan mode ketat aktif otomatis.</string>
+
+    <string name="hint_url">Link URL ujian (mis. https://cbt.sekolah.sch.id)</string>
+    <string name="btn_refresh">Muat ulang halaman</string>
+    <string name="reloading">Memuat ulang halaman ujian…</string>
+    <string name="hint_pin">Masukkan PIN</string>
+
+
+    <string name="kiosk_failed">Kiosk mode tidak dapat diaktifkan pada perangkat ini.</string>
+    <string name="kiosk_on">Kiosk AKTIF</string>
+    <string name="kiosk_off">Kiosk NONAKTIF</string>
+
+    <string name="btn_start">Masuk Ujian</string>
+
+    <string name="err_url_empty">Link URL ujian belum diisi.</string>
+    <string name="err_url_invalid">Format URL tidak valid.</string>
+    <string name="err_pin_wrong">PIN salah.</string>
+    <string name="pin_checking">Memeriksa PIN ke server…</string>
+    <string name="pin_server_unavailable">Server PIN tidak terjangkau, memakai PIN lokal.</string>
+
+    <string name="blocked_title">Ujian tidak dapat dimulai</string>
+    <string name="blocked_message">Perangkat tidak memenuhi syarat keamanan ujian:</string>
+    <string name="close">Tutup</string>
+    <string name="cancel">Batal</string>
+
+    <string name="status_bar">%1$s • Pelanggaran: %2$d</string>
+    <string name="status_bar_timer">%1$s • Sisa %2$s • Pelanggaran: %3$d</string>
+    <string name="time_warning">Waktu ujian tersisa %1$d menit.</string>
+    <string name="time_warning_last">Waktu ujian tersisa kurang dari 1 menit.</string>
+    <string name="time_up_title">Waktu ujian habis</string>
+    <string name="time_up_message">Durasi pengerjaan telah berakhir. Sesi login direset dan aplikasi akan tertutup.</string>
+
+    <string name="violation_back">Tombol kembali dinonaktifkan selama ujian.</string>
+    <string name="violation_navkey">Tombol navigasi dinonaktifkan selama ujian.</string>
+    <string name="violation_url">Link di luar domain ujian diblokir: %1$s</string>
+    <string name="violation_download">Unduhan diblokir: %1$s</string>
+    <string name="violation_leave">Terdeteksi upaya keluar dari aplikasi ujian.</string>
+    <string name="violation_focus">Aplikasi ujian kehilangan fokus layar.</string>
+
+    <string name="overlay_title">Jendela melayang terdeteksi</string>
+    <string name="overlay_message">Ada aplikasi lain yang menggambar di atas layar ujian, misalnya browser melayang (bubble), filter cahaya biru, perekam layar, atau sidebar pintar.\n\nTutup aplikasi tersebut lewat panel notifikasi atau matikan izin "Tampilkan di atas aplikasi lain" miliknya, lalu tekan tombol di bawah. Ujian tidak dapat dilanjutkan selama jendela itu masih ada.</string>
+    <string name="overlay_continue">Saya sudah menutupnya</string>
+    <string name="overlay_still_present">Jendela melayang masih terdeteksi. Tutup dulu aplikasi tersebut.</string>
+    <string name="violation_overlay">Jendela melayang menutupi layar ujian.</string>
+    <string name="terminate_multiwindow">Terdeteksi mode layar terbagi (split screen) selama ujian.</string>
+
+    <string name="crash_title">Aplikasi sempat berhenti mendadak</string>
+    <string name="crash_hint">Keterangan di bawah ini membantu memperbaiki penyebabnya. Tekan Salin, lalu kirimkan ke pembuat aplikasi.</string>
+    <string name="crash_copy">Salin</string>
+    <string name="crash_delete">Hapus</string>
+    <string name="crash_copied">Keterangan disalin. Tempel di WhatsApp lalu kirim.</string>
+
+    <string name="btn_blocked_exit">Keluar dari ujian (perlu PIN pengawas)</string>
+    <string name="kiosk_pin_cancelled">Penguncian layar dibatalkan. Minta pengawas mengaktifkannya kembali lewat tombol Keluar lalu masuk ujian ulang.</string>
+
+    <string name="terminate_title">Sesi ujian dihentikan</string>
+    <string name="terminate_mirroring">Terdeteksi layar eksternal atau perekaman layar selama ujian.</string>
+
+    <string name="exit_title">Akhiri sesi ujian</string>
+    <string name="exit_message">Masukkan PIN pengawas untuk membuka kunci dan keluar. Sesi login siswa akan direset sehingga wajib login ulang.</string>
+    <string name="exit_message_fallback">Halaman ujian gagal dimuat, jadi PIN cadangan aktif. Masukkan PIN server atau PIN cadangan untuk keluar. Sesi login siswa akan direset sehingga wajib login ulang.</string>
+    <string name="fallback_active_hint">PIN cadangan aktif. Pengawas dapat keluar memakai PIN cadangan tanpa menunggu server.</string>
+    <string name="exit_confirm">Keluar</string>
+
+    <string name="diag_title">Diagnostik halaman ujian</string>
+    <string name="diag_ua">User agent:</string>
+    <string name="diag_external">Host luar yang dimuat halaman ujian:</string>
+    <string name="diag_console">Pesan console terakhir:</string>
+
+    <string name="load_failed_title">Halaman ujian gagal dimuat</string>
+    <string name="load_failed_detail">%1$s\n\nAlamat: %2$s\nKode: %3$s</string>
+    <string name="load_failed_hint_local">Periksa hal berikut:\n• HP tersambung ke Wi-Fi sekolah yang sama dengan server CBT\n• Server CBT menyala dan dapat dibuka dari browser lain\n• Alamat dan port sudah benar\n• Bila server memakai HTTP biasa, gunakan tombol di bawah</string>
+    <string name="load_failed_hint_online">Periksa koneksi internet perangkat lalu coba lagi.</string>
+    <string name="btn_retry">Coba Lagi</string>
+    <string name="btn_try_http">Coba lewat http:// (server lokal)</string>
+    <string name="ssl_local_accepted">Sertifikat server ujian tidak tepercaya, tetap dibuka karena beralamat lokal.</string>
+    <string name="ssl_rejected">Sertifikat tidak valid untuk %1$s. Halaman diblokir.</string>
+
+    <string name="btn_exit">Keluar dari ujian</string>
+    <string name="session_reset">Sesi login direset. Siswa harus login ulang.</string>
+
+    <string name="admin_description">Diperlukan agar aplikasi dapat mengunci perangkat dalam mode kiosk selama ujian berlangsung.</string>
+</resources>

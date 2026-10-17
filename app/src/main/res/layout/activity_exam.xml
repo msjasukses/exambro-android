@@ -1,0 +1,231 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    android:background="@color/bg">
+
+    <!-- Header: domain aktif, status proteksi, tombol Muat Ulang dan Keluar.
+         Tombol Keluar tetap meminta PIN pengawas. -->
+    <LinearLayout
+        android:id="@+id/header"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        android:gravity="center_vertical"
+        android:background="@color/primary"
+        android:paddingStart="14dp"
+        android:paddingEnd="4dp"
+        android:paddingTop="28dp"
+        android:paddingBottom="8dp">
+
+        <LinearLayout
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_weight="1"
+            android:orientation="vertical">
+
+            <TextView
+                android:id="@+id/tvHost"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#FFFFFF"
+                android:textSize="14sp"
+                android:textStyle="bold"
+                android:singleLine="true"
+                android:ellipsize="middle" />
+
+            <TextView
+                android:id="@+id/tvStatus"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:textColor="#DDFFFFFF"
+                android:textSize="11sp"
+                android:singleLine="true" />
+        </LinearLayout>
+
+        <ImageButton
+            android:id="@+id/btnRefresh"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/btn_refresh"
+            android:padding="10dp"
+            android:src="@drawable/ic_refresh" />
+
+        <ImageButton
+            android:id="@+id/btnExit"
+            android:layout_width="44dp"
+            android:layout_height="44dp"
+            android:background="?android:attr/selectableItemBackgroundBorderless"
+            android:contentDescription="@string/btn_exit"
+            android:padding="10dp"
+            android:src="@drawable/ic_exit" />
+    </LinearLayout>
+
+    <ProgressBar
+        android:id="@+id/progress"
+        style="?android:attr/progressBarStyleHorizontal"
+        android:layout_width="match_parent"
+        android:layout_height="3dp"
+        android:max="100"
+        android:visibility="gone" />
+
+    <FrameLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1">
+
+        <!-- filterTouchesWhenObscured sengaja TIDAK dipakai: pada MIUI/ColorOS,
+             overlay sistem membuat sentuhan pada kolom input ikut dibuang sehingga
+             keyboard tidak pernah muncul. -->
+        <com.exbro.browser.ui.SecureWebView
+            android:id="@+id/webView"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:focusable="true"
+            android:focusableInTouchMode="true" />
+
+        <!-- Panel penjelas saat halaman ujian gagal dimuat. -->
+        <LinearLayout
+            android:id="@+id/errorPanel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/bg"
+            android:padding="24dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/load_failed_title"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/danger" />
+
+            <TextView
+                android:id="@+id/tvError"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="13sp"
+                android:lineSpacingExtra="3dp" />
+
+            <!-- Panel error hanya tampil saat halaman gagal dimuat, dan saat itulah
+                 PIN cadangan aktif, jadi keterangan ini selalu terlihat bersamanya. -->
+            <TextView
+                android:id="@+id/tvFallbackActive"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="12dp"
+                android:background="@color/card"
+                android:padding="10dp"
+                android:text="@string/fallback_active_hint"
+                android:textColor="@color/primary"
+                android:textSize="13sp"
+                android:textStyle="bold" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnRetry"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/btn_retry" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnTryHttp"
+                style="@style/Widget.Material3.Button.OutlinedButton"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:text="@string/btn_try_http"
+                android:visibility="gone" />
+        </LinearLayout>
+
+        <!-- Wadah untuk konten yang memanggil requestFullscreen() dari halaman ujian. -->
+        <FrameLayout
+            android:id="@+id/fullscreenContainer"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#000000"
+            android:visibility="gone" />
+
+        <!-- Peringatan jendela melayang (bubble). Sengaja diletakkan paling akhir agar
+             menutupi seluruh isi layar ujian, termasuk video layar penuh. -->
+        <LinearLayout
+            android:id="@+id/overlayPanel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="24dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/overlay_title"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/danger" />
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:text="@string/overlay_message"
+                android:textSize="13sp"
+                android:lineSpacingExtra="3dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnOverlayOk"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/overlay_continue" />
+        </LinearLayout>
+
+        <!-- Ujian dihentikan karena pelanggaran. Aplikasi TIDAK menutup diri sendiri:
+             keluar tetap harus lewat tombol di bawah yang meminta PIN pengawas. -->
+        <LinearLayout
+            android:id="@+id/blockedPanel"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:gravity="center"
+            android:background="@color/bg"
+            android:clickable="true"
+            android:focusable="true"
+            android:padding="24dp"
+            android:visibility="gone">
+
+            <TextView
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:text="@string/terminate_title"
+                android:textSize="18sp"
+                android:textStyle="bold"
+                android:textColor="@color/danger" />
+
+            <TextView
+                android:id="@+id/tvBlockedReason"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="10dp"
+                android:textSize="13sp"
+                android:lineSpacingExtra="3dp" />
+
+            <com.google.android.material.button.MaterialButton
+                android:id="@+id/btnBlockedExit"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="20dp"
+                android:text="@string/btn_blocked_exit" />
+        </LinearLayout>
+    </FrameLayout>
+</LinearLayout>

@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<network-security-config>
+    <!-- Server CBT sekolah umumnya berada di jaringan lokal dengan HTTP biasa
+         atau sertifikat yang diterbitkan sendiri. Konfigurasi ini mengizinkan
+         cleartext dan ikut mempercayai CA yang dipasang admin di perangkat. -->
+    <base-config cleartextTrafficPermitted="true">
+        <trust-anchors>
+            <certificates src="system" />
+            <certificates src="user" />
+        </trust-anchors>
+    </base-config>
+</network-security-config>

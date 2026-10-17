@@ -1,0 +1,17 @@
+*.iml
+.gradle/
+local.properties
+.idea/
+.DS_Store
+build/
+captures/
+.externalNativeBuild
+.cxx
+keystore.properties
+*.jks
+*.keystore
+exbro-api.properties
+server/exbropinapi/config.php
+server/exbropinapi/pin-store.php
+server/exbropinapi/violations-log.php
+server/exbropinapi/pin-store.tmp-*.php

@@ -1,0 +1,14 @@
+# Salin menjadi exbro-api.properties (JANGAN di-commit), lalu build ulang APK.
+#
+# api.url : path yang ditempelkan ke origin link ujian, atau URL absolut.
+#           Contoh path    : /exbropinapi/verify-pin.php
+#           Contoh absolut : https://smpn142.cyberedugarage.id/exbropinapi/verify-pin.php
+# api.key : kunci rahasia yang SAMA dengan api_key di server/exbropinapi/config.php
+#
+# Kosongkan api.key untuk menonaktifkan verifikasi server (hanya PIN lokal).
+api.url=/exbropinapi/verify-pin.php
+api.key=
+
+# fallback.pin : PIN cadangan untuk SEMUA HP, 4-8 digit angka. Hanya dipakai bila
+#                server PIN tidak terjangkau. Bila kosong, dipakai 112233.
+fallback.pin=
